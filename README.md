@@ -1,4 +1,4 @@
-# Spring Framework Learn
+# Spring boot Learn
 
 Simple Spring Boot project created using Spring Initializr.
 
