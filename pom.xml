@@ -11,8 +11,8 @@
 	<groupId>com.nb.spring.boot.learn</groupId>
 	<artifactId>spring-boot-learn</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name/>
-	<description/>
+	<name>spring-boot-learn</name>
+	<description>learn spring boot</description>
 	<url/>
 	<licenses>
 		<license/>
