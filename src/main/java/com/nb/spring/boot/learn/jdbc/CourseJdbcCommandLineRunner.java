@@ -15,6 +15,7 @@ public class CourseJdbcCommandLineRunner implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		
 		courseJdbcRepository.insert("Learn Math", "Sampat");
+		courseJdbcRepository.insert("Learn Physics", "Hopman");
 		
 	}
 

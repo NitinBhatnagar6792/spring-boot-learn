@@ -12,19 +12,19 @@ public class CourseJdbcRepository {
 	
 	private static String INSERT_QUERY = """
 			INSERT INTO courses (name, author)
-			SELECT '%s', '%s'
+			SELECT ?, ?
 			WHERE NOT EXISTS (
-			    SELECT 1 FROM courses WHERE name = '%s'
+			    SELECT 1 FROM courses WHERE name = ?
 			);
 			""";
 	
-	private static String createInsertQuery(String name, String author) {
-		return INSERT_QUERY.formatted(name, author, name);
-	}
+//	private static String createInsertQuery(String name, String author) {
+//		return INSERT_QUERY.formatted(name, author, name);
+//	}
 
 	public void insert(String name, String author) {
-		String inserStmt = createInsertQuery(name,author);
-		springJdbcTemplate.update(inserStmt);
+		//String inserStmt = createInsertQuery(name,author);
+		springJdbcTemplate.update(INSERT_QUERY, name, author, name);
 	}
 
 }
