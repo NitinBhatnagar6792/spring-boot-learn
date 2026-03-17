@@ -7,7 +7,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Service;
 
 import com.nb.spring.boot.learn.configurations.CourseServiceProperties;
-import com.nb.spring.boot.learn.dto.Course;
+import com.nb.spring.boot.learn.dto.CourseDTO;
 import com.nb.spring.boot.learn.dto.CourseResponse;
 import com.nb.spring.boot.learn.enums.CourseLanguage;
 
@@ -20,17 +20,17 @@ public class CourseService {
 	@Autowired
 	private CourseServiceProperties properties;
 	
-	private List<Course> allCourses;
+	private List<CourseDTO> allCourses;
 
 	@PostConstruct
 	public void init() {
-		allCourses = List.of(new Course(1, "Learn AWS", "Jack", CourseLanguage.English),
-				new Course(2, "Learn AWS in Japanese", "Jack", CourseLanguage.Japanese),
-				new Course(3, "Learn AWS in French", "Jack", CourseLanguage.French),
-				new Course(4, "Learn Java", "Bruce", CourseLanguage.English),
-				new Course(5, "Learn Java in japanese", "Bruce", CourseLanguage.Japanese),
-				new Course(6, "Learn Oracle", "Caterine", CourseLanguage.English),
-				new Course(7, "Learn Oracle in french", "Caterine", CourseLanguage.French));
+		allCourses = List.of(new CourseDTO(1, "Learn AWS", "Jack", CourseLanguage.English),
+				new CourseDTO(2, "Learn AWS in Japanese", "Jack", CourseLanguage.Japanese),
+				new CourseDTO(3, "Learn AWS in French", "Jack", CourseLanguage.French),
+				new CourseDTO(4, "Learn Java", "Bruce", CourseLanguage.English),
+				new CourseDTO(5, "Learn Java in japanese", "Bruce", CourseLanguage.Japanese),
+				new CourseDTO(6, "Learn Oracle", "Caterine", CourseLanguage.English),
+				new CourseDTO(7, "Learn Oracle in french", "Caterine", CourseLanguage.French));
 	}
 
 	public List<CourseResponse> getAllCourses() {
