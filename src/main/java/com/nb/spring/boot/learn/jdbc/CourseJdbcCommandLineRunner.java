@@ -8,6 +8,7 @@ import com.nb.spring.boot.learn.dto.CourseResponse;
 import com.nb.spring.boot.learn.entities.Course;
 import com.nb.spring.boot.learn.repositories.CourseJdbcRepository;
 import com.nb.spring.boot.learn.repositories.CourseJpaRepository;
+import com.nb.spring.boot.learn.repositories.CourseSpringDataJpaRepository;
 
 @Component
 public class CourseJdbcCommandLineRunner implements CommandLineRunner {
@@ -17,6 +18,9 @@ public class CourseJdbcCommandLineRunner implements CommandLineRunner {
 	
 	@Autowired
 	private CourseJpaRepository courseJpaRepository;
+	
+	@Autowired
+	private CourseSpringDataJpaRepository courseSpringDataJpaRepository;
 	
 	public void run(String... args) throws Exception {
 		
@@ -36,6 +40,17 @@ public class CourseJdbcCommandLineRunner implements CommandLineRunner {
 		System.out.println("courseFound="+courseFound);
 
 		courseJpaRepository.deleteById(chemistryCourse.getId());
+		
+		
+		Course englishCourse = courseJpaRepository.insert(Course.builder().name("Learn English").author("Tom").build());
+		Course hindiCourse = courseJpaRepository.insert(Course.builder().name("Learn Hindi").author("Frank").build());
+		englishCourse = courseSpringDataJpaRepository.save(englishCourse);
+		System.out.println("englishCourse="+englishCourse);
+		hindiCourse = courseSpringDataJpaRepository.save(hindiCourse);
+		
+		englishCourse.setName(englishCourse.getName()+"-updated");
+		courseSpringDataJpaRepository.save(englishCourse);
+		courseSpringDataJpaRepository.delete(hindiCourse);
 		
 	}
 
