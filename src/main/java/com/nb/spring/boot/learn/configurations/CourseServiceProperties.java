@@ -1,8 +1,10 @@
 package com.nb.spring.boot.learn.configurations;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
 
 @ConfigurationProperties(prefix = "course-service")
+@Component
 public class CourseServiceProperties {
 
 	private Integer maxCourses;
