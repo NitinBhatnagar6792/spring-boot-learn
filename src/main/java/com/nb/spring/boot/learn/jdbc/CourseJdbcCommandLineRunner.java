@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import com.nb.spring.boot.learn.dto.CourseResponse;
 import com.nb.spring.boot.learn.repositories.CourseJdbcRepository;
 
 @Component
@@ -16,6 +17,11 @@ public class CourseJdbcCommandLineRunner implements CommandLineRunner {
 		
 		courseJdbcRepository.insert("Learn Math", "Sampat");
 		courseJdbcRepository.insert("Learn Physics", "Hopman");
+		
+		CourseResponse courseResponse = courseJdbcRepository.findFirstByName("Learn Math");
+		System.out.println("courseResponse:"+courseResponse);
+		
+		courseJdbcRepository.deleteById(courseResponse.getId());
 		
 	}
 
