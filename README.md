@@ -22,3 +22,11 @@ Simple Spring Boot project created using Spring Initializr.
 - git remote add origin https://github.com/NitinBhatnagar6792/spring-boot-learn.git
 - git push -u origin master
 
+# How to access H2 DB url
+- add 'spring.h2.console.enabled=true' in application.properties
+- add 'spring.datasource.url=jdbc:h2:mem:testdb' application.properties
+- in browser open url=http://localhost:9090/h2-console
+- in the JDBC Url text box enter 'jdbc:h2:mem:testdb' and press Connect button
+
+
+
