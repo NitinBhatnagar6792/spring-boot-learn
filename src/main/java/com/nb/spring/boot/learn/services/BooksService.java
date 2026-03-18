@@ -1,11 +1,14 @@
 package com.nb.spring.boot.learn.services;
 
+import java.util.List;
 import java.util.Optional;
 
+import org.jspecify.annotations.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.nb.spring.boot.learn.entities.Book;
+import com.nb.spring.boot.learn.exceptions.BadRequestException;
 import com.nb.spring.boot.learn.exceptions.NotFoundException;
 import com.nb.spring.boot.learn.repositories.BooksRepository;
 
@@ -21,6 +24,19 @@ public class BooksService {
 			throw new NotFoundException("Book Not Found");
 		}
 		return bookOptional.get();
+	}
+
+	public List<Book> getAllBooks() {
+		return booksRepository.findAll();
+	}
+
+	public @Nullable Book createBook(Book newBook) {
+		
+		Book existingBook = booksRepository.findFirstByName(newBook.getName());
+		if (existingBook != null) {
+			throw new BadRequestException("Book already exists by provided name:"+newBook.getName());
+		}
+		return booksRepository.save(newBook);
 	}
 
 }

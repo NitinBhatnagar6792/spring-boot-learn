@@ -8,4 +8,6 @@ import com.nb.spring.boot.learn.entities.Book;
 @Repository
 public interface BooksRepository extends JpaRepository<Book, Long>{
 
+	Book findFirstByName(String name);
+
 }

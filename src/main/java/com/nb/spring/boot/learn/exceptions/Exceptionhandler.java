@@ -18,4 +18,8 @@ public class Exceptionhandler {
 		return new ResponseEntity<String>(nfe.getMessage(), HttpStatus.NOT_FOUND);
 	}
 	
+	@ExceptionHandler
+	public ResponseEntity<?> handleBadRequestException(BadRequestException be) {
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(be.getMessage());
+	}
 }
