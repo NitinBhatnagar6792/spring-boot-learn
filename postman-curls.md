@@ -10,3 +10,7 @@
 - curl --location 'http://localhost:9090/actuator/metrics'
 - curl --location 'http://localhost:9090/actuator/metrics/http.server.requests'
 
+# Get Book by id	
+- curl --location 'http://localhost:9090/books/1'
+
+
