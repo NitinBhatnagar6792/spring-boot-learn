@@ -39,4 +39,13 @@ public class BooksService {
 		return booksRepository.save(newBook);
 	}
 
+	public @Nullable Book updateBook(Book book) {
+		Book existingBook = booksRepository.findFirstByName(book.getName());
+		if (existingBook == null) {
+			throw new BadRequestException("Book does not exists by provided name:"+book.getName());
+		}
+		existingBook.setAuthor(book.getAuthor());
+		return booksRepository.save(existingBook);
+	}
+
 }
