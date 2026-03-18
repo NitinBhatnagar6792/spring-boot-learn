@@ -48,4 +48,12 @@ public class BooksService {
 		return booksRepository.save(existingBook);
 	}
 
+	public void deleteBook(Long id) {
+		Optional<Book> bookOptional = booksRepository.findById(id);
+		if (!bookOptional.isPresent()) {
+			throw new NotFoundException("Book Not Found");
+		}
+		booksRepository.delete(bookOptional.get());
+	}
+
 }
