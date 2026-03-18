@@ -1,0 +1,73 @@
+---------------------------------
+Step 1 - Install WSL 2
+---------------------------------
+1.a: Open PowerShell (Admin)
+1.b run wsl --install
+1.c restart the m/c
+1.d use micorsoft store to install Ubuntu follow https://www.youtube.com/watch?v=zZf4YH4WiZo
+1.e after Ubuntu is installed from the store open it and setup user and password
+
+Installing, this may take a few minutes...
+Please create a default UNIX user account. The username does not need to match your Windows username.
+For more information visit: https://aka.ms/wslusers
+Enter new UNIX username: nitinb
+New password: 
+Retype new password:
+passwd: password updated successfully
+Installation successful!
+To run a command as administrator (user "root"), use "sudo <command>".
+
+
+1.f run command 'wsl -l -v' to check status of ubunto in powershell
+
+---------------------------------
+Step 2: check if Virtualization is enabled
+---------------------------------
+Check it from task manager -> cpu tab 
+
+---------------------------------
+Step 3: indstall docker
+---------------------------------
+3.a goto https://docs.docker.com/desktop/setup/install/windows-install/
+3.b. follow https://www.youtube.com/watch?v=fsR8fj7iCNY
+3.c download installer 'Docker Desktop Installer.exe' by clicking on  'Docker Desktop for Windows - x86_64' 
+3.d install Docker Desktop Installer.exe
+3.e to verify if docker is working
+ -> in ubuntu shell run docker run hello-world
+ 
+nitinb@Nitin:~$ docker run hello-world
+Unable to find image 'hello-world:latest' locally
+latest: Pulling from library/hello-world
+17eec7bbc9d7: Pull complete
+ea52d2000f90: Download complete
+Digest: sha256:85404b3c53951c3ff5d40de0972b1bb21fafa2e8daa235355baf44f33db9dbdd
+Status: Downloaded newer image for hello-world:latest
+
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+    (amd64)
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker ID:
+ https://hub.docker.com/
+
+For more examples and ideas, visit:
+ https://docs.docker.com/get-started/
+
+3.f
+-> Next run docker ps -a
+nitinb@Nitin:~$ docker ps -a
+CONTAINER ID   IMAGE         COMMAND    CREATED              STATUS                          PORTS     NAMES
+ff1660fb8fd0   hello-world   "/hello"   About a minute ago   Exited (0) About a minute ago             focused_spence
+nitinb@Nitin:~$ 
+

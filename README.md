@@ -28,5 +28,17 @@ Simple Spring Boot project created using Spring Initializr.
 - in browser open url=http://localhost:9090/h2-console
 - in the JDBC Url text box enter 'jdbc:h2:mem:testdb' and press Connect button
 
+# Launch MySQL using Docker in ubuntu shell
+docker run --detach --env MYSQL_ROOT_PASSWORD=dummypassword --env MYSQL_USER=springboot-user --env MYSQL_PASSWORD=dummyboot --env MYSQL_DATABASE=spring-boot-learn --name mysql --publish 3306:3306 mysql:5.7
+	
+# Check the Tables in MYSQL Using Docker
+- docker exec -it mysql mysql -u springboot-user -pdummyboot spring-boot-learn -e "SELECT * FROM books;"
+- docker exec -it mysql mysql -u springboot-user -p
 
-
+# few usefull docker commands
+-- docker version
+-- docker rm mysql
+-- docker logs mysql
+-- docker ps -a 
+-- docker container ls
+-- docker container stop ID
