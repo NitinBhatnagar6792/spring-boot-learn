@@ -60,7 +60,7 @@ GET: http://localhost:9090/courses
 - cd ...\spring-boot-learn
 - mvn --version
 - mvn clean install
-- docker build -t spring-boot-learn .
+- docker build -t spring-boot-learn-h2 .
 - docker --images
-- docker run -d -p 9090:9090 spring-boot-learn
+- docker run -d -p 9090:9090 spring-boot-learn-h2
 - test the application by hitting http://localhost:9090/health-check in browser
