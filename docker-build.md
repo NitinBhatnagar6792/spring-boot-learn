@@ -34,6 +34,7 @@ ENTRYPOINT ["java", "-jar", "/app/app.jar"]
 ```
 cd ..\spring-boot-learn
 mvn clean package
+docker build -t spring-boot-learn-h2 .
 	
 ```
 
@@ -45,7 +46,7 @@ docker images
 
 - Step 5 - Run Container
 ```
-docker run -p 9090:9090 spring-boot-learn
+docker run -p 9090:9090 spring-boot-learn-h2
 ```
 
 - Step 6 - test the app
