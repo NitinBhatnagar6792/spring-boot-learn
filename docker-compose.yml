@@ -1,0 +1,27 @@
+services:
+
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: dummypassword
+      MYSQL_DATABASE: spring-boot-learn
+      MYSQL_USER: springboot-user
+      MYSQL_PASSWORD: dummyboot
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+  spring-app:
+    image: spring-boot-learn-mysql
+    ports:
+      - "9090:9090"
+    depends_on:
+      - mysql
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/spring-boot-learn?useSSL=false&serverTimezone=UTC
+      SPRING_DATASOURCE_USERNAME: springboot-user
+      SPRING_DATASOURCE_PASSWORD: dummyboot
+
+volumes:
+  mysql-data:

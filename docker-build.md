@@ -79,3 +79,12 @@ GET: http://localhost:9090/health-check
 - docker run -d --name mysql --network spring-net -e MYSQL_ROOT_PASSWORD=dummypassword -e MYSQL_USER=springboot-user -e MYSQL_PASSWORD=dummyboot -e MYSQL_DATABASE=spring-boot-learn -p 3306:3306 mysql:5.7
 - docker run -d --name spring-app  --network spring-net  -p 9090:9090  spring-boot-learn-mysql
 - test the application by hitting http://localhost:9090/health-check in browser
+
+
+# Using Docker compose after creating docker-compose.yml
+- docker-compose up -d
+- docker ps -a
+- test the application by hitting http://localhost:9090/health-check in browser
+- docker-compose logs
+- docker-compose logs -f
+- docker-compose down
