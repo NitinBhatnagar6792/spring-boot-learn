@@ -35,10 +35,10 @@ docker run --detach --env MYSQL_ROOT_PASSWORD=dummypassword --env MYSQL_USER=spr
 - docker exec -it mysql mysql -u springboot-user -pdummyboot spring-boot-learn -e "SELECT * FROM books;"
 - docker exec -it mysql mysql -u springboot-user -p
 
-# few usefull docker commands
--- docker version
--- docker rm mysql
--- docker logs mysql
--- docker ps -a 
--- docker container ls
--- docker container stop ID
+# few useful docker commands
+- docker version
+- docker rm mysql
+- docker logs mysql
+- docker ps -a 
+- docker container ls
+- docker container stop ID
