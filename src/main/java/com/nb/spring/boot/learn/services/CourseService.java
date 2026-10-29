@@ -12,9 +12,11 @@ import com.nb.spring.boot.learn.dto.CourseResponse;
 import com.nb.spring.boot.learn.enums.CourseLanguage;
 
 import jakarta.annotation.PostConstruct;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
 @ConfigurationProperties(prefix = "course-service")
+@Slf4j
 public class CourseService {
 
 	@Autowired
@@ -38,8 +40,8 @@ public class CourseService {
         Integer maxCourses = properties.getMaxCourses();
         String defaultLanguage = properties.getDefaultLanguage();
 
-        System.out.println("maxCourses=" + maxCourses);
-        System.out.println("defaultLanguage=" + defaultLanguage);		
+        log.info("maxCourses=" + maxCourses);
+        log.info("defaultLanguage=" + defaultLanguage);
 		
 		final CourseLanguage filterOnLanguage = getCourseLanguage();
 		return allCourses.stream()
