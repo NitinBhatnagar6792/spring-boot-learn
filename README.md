@@ -83,7 +83,7 @@ spring.datasource.password=
 spring.sql.init.mode=always
 ```
 
-### 5.e.ii. By default, Spring Boot looks for schema.sql and data.sql under /src/main/resources/ and execute them
+### 5.e.ii. By default, Spring Boot looks for schema.sql and data.sql under /src/main/resources/ and execute them at the application startup
 
 #### 5.e.ii.1. schema.sql : Used for executes DDL statements (CREATE TABLE, ALTER TABLE, etc.)
 

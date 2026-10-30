@@ -1,8 +1,13 @@
 package com.nb.spring.boot.learn.repositories;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.nb.spring.boot.learn.dto.CourseResponse;
@@ -10,46 +15,53 @@ import com.nb.spring.boot.learn.dto.CourseResponse;
 @Repository
 public class CourseJdbcRepository {
 
-	@Autowired
-	private JdbcTemplate springJdbcTemplate;
-	
-	private static String INSERT_QUERY = """
-			INSERT INTO courses (name, author)
-			SELECT ?, ?
-			WHERE NOT EXISTS (
-			    SELECT 1 FROM courses WHERE name = ?
-			);
-			""";
+    @Autowired
+    private DataSource dataSource;
 
-	private static String DELETE_QUERY = """
-			DELETE FROM courses
-			    WHERE id = ?
-			""";
+    public void insert(String name, String author) {
 
-	private static String FIND_FIRST_BY_NAME = """
-			SELECT * FROM courses
-			    WHERE name = ?
-			    LIMIT 1
-			""";
-	
-	
-//	private static String createInsertQuery(String name, String author) {
-//		return INSERT_QUERY.formatted(name, author, name);
-//	}
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement preparedStatement =
+                     connection.prepareStatement(SQLConstants.CourseQueries.INSERT_QUERY)) {
 
-	public void insert(String name, String author) {
-		//String inserStmt = createInsertQuery(name,author);
-		springJdbcTemplate.update(INSERT_QUERY, name, author, name);
-	}
+            preparedStatement.setString(1, name);
+            preparedStatement.setString(2, author);
+            preparedStatement.setString(3, name);
 
-	public void deleteById(long id) {
-		springJdbcTemplate.update(DELETE_QUERY, id);
-	}
+            preparedStatement.executeUpdate();
 
-	public CourseResponse findFirstByName(String name) {
-		return springJdbcTemplate.queryForObject(FIND_FIRST_BY_NAME,
-				new BeanPropertyRowMapper<>(CourseResponse.class),
-				name);
-	}
-	
+        } catch (SQLException e) {
+            throw new RuntimeException("Error inserting course", e);
+        }
+    }
+
+    public CourseResponse findFirstByName(String name) {
+
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement preparedStatement =
+                     connection.prepareStatement(SQLConstants.CourseQueries.FIND_FIRST_BY_NAME)) {
+
+            preparedStatement.setString(1, name);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+
+                if (resultSet.next()) {
+
+                    CourseResponse courseResponse = new CourseResponse();
+
+                    courseResponse.setId(resultSet.getLong("id"));
+                    courseResponse.setName(resultSet.getString("name"));
+                    courseResponse.setAuthor(resultSet.getString("author"));
+
+                    return courseResponse;
+                }
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Error fetching course", e);
+        }
+
+        return null;
+    }
+
 }
