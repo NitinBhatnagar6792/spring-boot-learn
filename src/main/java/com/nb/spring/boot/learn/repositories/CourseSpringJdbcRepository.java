@@ -12,13 +12,8 @@ public class CourseSpringJdbcRepository {
 
 	@Autowired
 	private JdbcTemplate springJdbcTemplate;
-	
-//	private static String createInsertQuery(String name, String author) {
-//		return INSERT_QUERY.formatted(name, author, name);
-//	}
 
 	public void insert(String name, String author) {
-		//String inserStmt = createInsertQuery(name,author);
 		springJdbcTemplate.update(SQLConstants.CourseQueries.INSERT_QUERY, name, author, name);
 	}
 
