@@ -1,4 +1,4 @@
-package com.nb.spring.boot.learn.jdbc;
+package com.nb.spring.boot.learn.startup;
 
 import java.util.List;
 
@@ -23,7 +23,7 @@ import com.nb.spring.boot.learn.repositories.CourseSpringJdbcRepository;
  *	- Run some background initialization logic.
  */
 @Component
-public class CourseJdbcCommandLineRunner implements CommandLineRunner {
+public class CourseDatabaseCommandLineRunner implements CommandLineRunner {
 
 	
 	@Autowired
