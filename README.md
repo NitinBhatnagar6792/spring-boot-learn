@@ -22,11 +22,19 @@ Simple Spring Boot project created using Spring Initializr.
 - git remote add origin https://github.com/NitinBhatnagar6792/spring-boot-learn.git
 - git push -u origin master
 
+# Steps for configuring code review using [ChatGPT](https://chatgpt.com/settings/code-review)
+
+- In ChatGPT go to [plugins](https://chatgpt.com/plugins?search=github) and search for GitHub
+- Install the GitHub plugin while doing so it will ask for github credentials and repos for which you want to give access to chatgpt
+- Now create a PR and add a comment starting with '@codex review' to trigger the code review
+
+```
+@codex review: Do a very basic code review
+@codex review: Please review the code written in file src/main/java/com/nb/spring/boot/learn/services/CourseService.java as part of this PR, suggest some improvement however do not make any change to the code
+```
 # How to access H2 DB url
 - add 'spring.h2.console.enabled=true' in application.properties
 - add 'spring.datasource.url=jdbc:h2:mem:testdb' application.properties
 - in browser open url=http://localhost:9090/h2-console
 - in the JDBC Url text box enter 'jdbc:h2:mem:testdb' and press Connect button
-
-
 
