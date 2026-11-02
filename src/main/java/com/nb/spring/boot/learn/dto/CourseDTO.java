@@ -11,8 +11,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Course {
-	private int id;
+public class CourseDTO {
+	private long id;
 	private String name;
 	private String author;
 	private CourseLanguage courseLanguage; 
