@@ -1,10 +1,10 @@
 ---------------------------------
-Step 1 - Install WSL 2
+Step 1 - Install WSL 2 and then install Ubuntu on Windows 11
 ---------------------------------
 1.a: Open PowerShell (Admin)
 1.b run wsl --install
 1.c restart the m/c
-1.d use micorsoft store to install Ubuntu follow https://www.youtube.com/watch?v=zZf4YH4WiZo
+1.d use microsoft store to install Ubuntu follow https://www.youtube.com/watch?v=zZf4YH4WiZo
 1.e after Ubuntu is installed from the store open it and setup user and password
 
 Installing, this may take a few minutes...
@@ -26,7 +26,7 @@ Step 2: check if Virtualization is enabled
 Check it from task manager -> cpu tab 
 
 ---------------------------------
-Step 3: indstall docker
+Step 3: install docker
 ---------------------------------
 3.a goto https://docs.docker.com/desktop/setup/install/windows-install/
 3.b. follow https://www.youtube.com/watch?v=fsR8fj7iCNY
