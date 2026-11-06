@@ -103,5 +103,9 @@ INSERT INTO courses (name, author) VALUES ('Learn Java', 'Bruce');
 INSERT INTO courses (name, author) VALUES ('Learn Oracle', 'Caterine');
 ```
 
+# 6. Notes
 
+- H2 DB related configuration properties have been moved to h2 profile by creating application-h2.properties so that we can have seperate profile for mysql
+
+- File postman-curls.md will be marked as deprecated since now Postman collection 'spring-boot-learn.postman_collection.json' have been added to this repo
 
