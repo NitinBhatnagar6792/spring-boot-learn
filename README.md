@@ -146,7 +146,9 @@ mysql> exit;
 
 ```
 docker version
+docker ps
 docker ps -a
+docker images
 docker image ls
 docker run hello-world
 docker container ls
@@ -155,5 +157,10 @@ docker logs mysql
 docker rm mysql
 docker container stop ID
 ```
+
+# 8 For building docker image out of this spring boot application refer below files
+
+- Dockerfile
+- steps-to-build-docker-image-for-spring-boot-application.md
 
 
