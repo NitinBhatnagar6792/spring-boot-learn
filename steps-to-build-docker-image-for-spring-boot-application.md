@@ -76,7 +76,7 @@ docker network create spring-network
 docker network connect spring-network mysql
 ```
 
-#### Start MYSQL docker image
+#### Start MYSQL docker image (refer README.md point 7)
 
 ```
 docker start mysql
