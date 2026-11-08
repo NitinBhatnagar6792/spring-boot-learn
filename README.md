@@ -103,5 +103,64 @@ INSERT INTO courses (name, author) VALUES ('Learn Java', 'Bruce');
 INSERT INTO courses (name, author) VALUES ('Learn Oracle', 'Caterine');
 ```
 
+# 6. Notes
+
+- H2 DB related configuration properties have been moved to h2 profile by creating application-h2.properties so that we can have seperate profile for mysql
+
+- File postman-curls.md will be marked as deprecated since now Postman collection 'spring-boot-learn.postman_collection.json' have been added to this repo
+
+- Refer file on-windows11-install-ubuntu-and-docker.txt on how to install Ubuntu and Docker on windows 11
+
+# 7 Launch MySQL 1st time using Docker in ubuntu shell
+
+```
+docker run --detach --env MYSQL_ROOT_PASSWORD=dummypassword --env MYSQL_USER=springboot-user --env MYSQL_PASSWORD=dummyboot --env MYSQL_DATABASE=spring-boot-learn --name mysql --publish 3306:3306 mysql:5.7
+```
+
+later the same container can be started by running command 'docker start mysql'
+    
+## 7.a Check the Tables in MYSQL Using Docker
+
+Run below command to execute just one SQL
+
+```
+docker exec -it mysql mysql -u springboot-user -pdummyboot spring-boot-learn -e "SELECT * FROM books;"
+```
+
+Run below command to open an interactive MySQL session
+
+```
+docker exec -it mysql mysql -u springboot-user -p
+```
+
+then in the shell we can list the database and select one database to execute SQL against it
+
+```
+mysql> show databases;
+mysql> use spring-boot-learn;
+mysql> select * from books;
+mysql> exit;
+```
+
+## 7.b. few useful docker commands
+
+```
+docker version
+docker ps
+docker ps -a
+docker images
+docker image ls
+docker run hello-world
+docker container ls
+docker start mysql
+docker logs mysql
+docker rm mysql
+docker container stop ID
+```
+
+# 8 For building docker image out of this spring boot application refer below files
+
+- Dockerfile
+- steps-to-build-docker-image-for-spring-boot-application.md
 
 
