@@ -164,3 +164,63 @@ docker container stop ID
 - steps-to-build-docker-image-for-spring-boot-application.md
 
 
+# 9 Using docker-compose for starting multiple docker images
+
+## 9.a refer docker-compose.yml file present in the project
+
+- Important section of docker-compose.yml
+
+```
+services                - Is the root section where we define the containers that make up our application, in this case we have two services: mysql and spring-app
+mysql, spring-app       - Service name; also the hostname used by other containers
+image                   - Docker image used to create the container
+environment             - Environment variables used by that service
+ports                   - Maps host port to container port (format is HOST_PORT:CONTAINER_PORT)
+volumes                 - Persists files outside the container's writable layer. This ensures that MySQL data survives container removal and recreation.
+depends_on              - This tells Docker Compose to start the MySQL service before starting the Spring Boot service. depends_on by itself does not guarantee that MySQL is ready to accept connections. It only establishes startup ordering.
+```
+
+## 9.b important docker compose commands
+
+- Start and Stop
+
+```
+docker compose up -d                    - Create/start the environment in background
+docker compose stop                     - Stop containers without removing them
+docker compose start                    - Start previously stopped containers
+docker compose restart                  - Restart containers
+docker compose down                     - Stop and remove containers and network
+```
+
+- Monitor
+
+```
+docker compose ps                       - List project containers
+docker compose logs                     - View all logs
+docker compose logs -f spring-app       - Follow Spring Boot logs
+docker compose logs --tail=100 mysql    - Last 100 MySQL log lines
+```
+
+- Troubleshoot and manage
+
+```
+docker compose config                   - Validate Compose configuration
+docker compose exec mysql bash          - Open a shell inside MySQL container
+```
+
+- In the bash shell for mysql we can connect to database and run SQL commands as shown below
+
+```
+bash-4.2# mysql -u springboot-user -pdummyboot
+mysql> SHOW DATABASES;
+mysql> USE spring-boot-learn;
+mysql> Select * from books;
+mysql> exit
+bash-4.2# exit
+```
+
+- Run below command to execute just one SQL in bash shell
+
+```
+docker compose exec mysql mysql -u springboot-user -pdummyboot -e "USE spring-boot-learn; SELECT * FROM books;"
+```
